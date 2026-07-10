@@ -1,0 +1,23 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "net.liopyu.entityjs.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AnimationControllerMixin",
+    "EntityAttributeCreationEventMixin",
+    "EntityMixin",
+    "KubeJSCommandsMixin",
+    "LivingEntityAccessor",
+    "LivingEntityMixin",
+    "MobMixin",
+    "PathfinderMobMixin",
+    "ProjectileMixin",
+    "RegistryEventJSMixin",
+    "ServerScriptManagerMixin"
+  ],
+  "client": [
+    "EntityRendererMixin",
+    "LivingEntityRendererMixin"
+  ]
+}
