@@ -1,6 +1,7 @@
 package dev.lexxie.mjolnir;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -27,8 +28,15 @@ public class Mjolnir {
 	public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(MOD_ID);
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
 
-	public static final Supplier<EntityType<MjolnirEntity>> MJOLNIR_ENTITY_TYPE = ENTITY_TYPES.register("mjolnir",
-			() -> EntityType.Builder.of(MjolnirEntity::new, MobCategory.MISC).noSummon().noLootTable().fireImmune().build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "mjolnir"))));
+	// @formatter:off
+	public static final Supplier<EntityType<MjolnirEntity>> MJOLNIR_ENTITY_TYPE = ENTITY_TYPES.register("mjolnir", () ->
+			EntityType.Builder.of(MjolnirEntity::new, MobCategory.MISC)
+//					.noSummon()
+					.noLootTable()
+					.fireImmune()
+					.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "mjolnir")))
+	);
+	// @formatter:on
 
 	public static final DeferredItem<Item> MJOLNIR_ITEM = ITEMS.registerItem("mjolnir", MjolnirItem::new);
 

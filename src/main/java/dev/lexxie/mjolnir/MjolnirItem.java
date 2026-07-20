@@ -1,5 +1,9 @@
 package dev.lexxie.mjolnir;
 
+import com.geckolib.animatable.GeoItem;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animatable.manager.AnimatableManager;
+import com.geckolib.util.GeckoLibUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
@@ -21,7 +25,9 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
-public class MjolnirItem extends Item {
+public class MjolnirItem extends Item implements GeoItem {
+	private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+
 	public MjolnirItem( Properties properties ) {
 		super(properties);
 	}
@@ -47,7 +53,7 @@ public class MjolnirItem extends Item {
 				itemStack.consume(1, player);
 				BlockPos pos = BlockPos.containing(player.getEyePosition());
 				return spawnMob(player, itemStack, serverLevel, pos);
-//				serverLevel.playSound(null, trident, sound.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
+				//				serverLevel.playSound(null, trident, sound.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
 			} else return false;
 		} else return false;
@@ -76,5 +82,15 @@ public class MjolnirItem extends Item {
 			player.startUsingItem(hand);
 			return InteractionResult.CONSUME;
 		}
+	}
+
+	@Override
+	public void registerControllers( AnimatableManager.ControllerRegistrar controllerRegistrar ) {
+
+	}
+
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return this.geoCache;
 	}
 }
