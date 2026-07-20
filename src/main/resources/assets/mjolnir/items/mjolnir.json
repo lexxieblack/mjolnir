@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "mjolnir:item/mjolnir",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}
