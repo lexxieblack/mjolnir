@@ -1,0 +1,11 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "GNU General Public License Version 3"
+
+[[mods]]
+modId = "mjolnir"
+version = "${modVersion}"
+displayName = "Mjölnir"
+logoFile = "mjolnir.png"
+authors = "Lexxie Black"
+description = "Adds the legendary hammer Mjölnir to Minecraft."

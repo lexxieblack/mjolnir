@@ -6,6 +6,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
 public class MjolnirItem extends Item {
-
 	public MjolnirItem( Properties properties ) {
 		super(properties);
 	}
@@ -46,28 +46,16 @@ public class MjolnirItem extends Item {
 			if( level instanceof ServerLevel serverLevel ) {
 				itemStack.consume(1, player);
 				BlockPos pos = BlockPos.containing(player.getEyePosition());
-				return spawnMob(player, itemStack, level, pos);
+				return spawnMob(player, itemStack, serverLevel, pos);
+//				serverLevel.playSound(null, trident, sound.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
-				//				ItemStack thrownItemStack = itemStack.consumeAndReturn(1, player);
-				//				MjolnirEntity trident = Projectile.spawnProjectileFromRotation(MjolnirEntity::new, serverLevel,
-				//				thrownItemStack,
-				//						player, 0.0F, 2.5F, 1.0F);
-				//				if( player.hasInfiniteMaterials() ) {
-				//					trident.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-				//				}
-				//
-				//				level.playSound(null, trident, sound.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
-				//				return true;
 			} else return false;
 		} else return false;
 	}
 
 	private static boolean spawnMob( LivingEntity user, ItemStack itemStack, Level level, BlockPos spawnPos ) {
-//		EntityType<?> type = getType(itemStack);
-		EntityType<?> type = Mjolnir.MJOLNIR_ENTITY_TYPE.get();
-		if( type == null ) {
-			return false;
-		}
+		EntityType<MjolnirEntity> type = Mjolnir.MJOLNIR_ENTITY_TYPE.get();
+		if( type == null ) return false;
 		type.spawn((ServerLevel) level, itemStack, user, spawnPos, EntitySpawnReason.SPAWN_ITEM_USE, false, false);
 		return true;
 	}
